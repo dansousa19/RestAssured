@@ -7,8 +7,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class CadastrarCard {
-
+public class CadastrarCustomer {
+	
 	RequestSpecification request;
 	Response response;
 
@@ -18,17 +18,14 @@ public class CadastrarCard {
 		request = RestAssured.given().header("Content-Type", "application/json");
 
 		JSONObject json = new JSONObject();
-		json.put("brand", "MASTER");
-		json.put("customerId", 1);
-		json.put("cvc", 570);
-		json.put("expirationMoth", 4);
-		json.put("expirationYear", 2026);
-		json.put("holderName", "Jose Cabral Ramos");
-		json.put("number", "4356874523650001");
+		json.put("birthDate", "1977-06-13");
+		json.put("lastName", "Cabral Ramos");
+		json.put("name", "Jose");
 
 		request.body(json.toJSONString());
 
-		response = request.post("http://localhost:9090/card");
+		response = request.post("http://localhost:9090/customer");
+		//Para consutar basta trocar de post para get
 		System.out.println(response.asPrettyString());
 
 	}
